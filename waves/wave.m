@@ -51,6 +51,38 @@ for t = t_list
     y = A * sin(k*z - omega*t + phi);
     plot(z, y, 'LineWidth', 1.3);
 end
+
+y = A * sin(k*z - omega*t_list(1) + phi);  plot(z, y, 'LineWidth', 1.3);
+y = A * sin(k*z - omega*t_list(2) + phi);  plot(z, y, 'LineWidth', 1.3);
+y = A * sin(k*z - omega*t_list(3) + phi);  plot(z, y, 'LineWidth', 1.3);
+y = A * sin(k*z - omega*t_list(4) + phi);  plot(z, y, 'LineWidth', 1.3);
+
+xlabel('z [m]'); ylabel('y(z,t)');
+title('Postupna vlna: profily v ruznych casech (smer +z)');
+legend(arrayfun(@(tt) sprintf('t = %.2f s', tt), t_list, 'UniformOutput', false), ...
+       'Location', 'southoutside');
+hold off
+
+
+%% Postupna harmonicka vlna - simulace y(z,t) = A*sin(k*z - omega*t + phi0)
+A = 1;              % amplituda
+lambda = 1.0;       % vlnova delka [m]
+k = 2*pi/lambda;    % vlnove cislo [rad/m]
+f = 1.0;            % frekvence [Hz]
+omega = 2*pi*f;     % uhlova frekvence [rad/s]
+phi0 = 0;           % pocatecni faze [rad]
+
+% Prostor a cas pro "snapshoty"
+z = linspace(0, 3, 100);
+t_list = linspace(0,1,100) % casy v sekundach (zmente a sledujte posun)
+
+figure; hold off; grid on
+for t = t_list
+    y = A * sin(k*z - omega*t + phi0);
+    plot(z, y, 'LineWidth', 1.3);
+    pause(0.1)
+end
+
 xlabel('z [m]'); ylabel('y(z,t)');
 title('Postupna vlna: profily v ruznych casech (smer +z)');
 legend(arrayfun(@(tt) sprintf('t = %.2f s', tt), t_list, 'UniformOutput', false), ...

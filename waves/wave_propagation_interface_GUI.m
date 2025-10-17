@@ -20,56 +20,6 @@ S.alpha2   = 0.25;    % koeficient útlumu amplitudy v n2 [Np/m]
 S.dt     = 0.01;    % časový krok [s]
 S.Tpause = 40;      % pauza mezi snímky [ms]
 
-%% --- UI rozložení --- (puvodni verze)
-% uif = uifigure('Name','EM wave: n1 -> n2 (normal incidence)','Color','w','Position',[100 100 1100 800]);
-% ax  = uiaxes(uif,'Position',[40 90 640 650]); hold(ax,'on'); grid(ax,'on'); ax.GridAlpha = 0.25;
-% xlabel(ax,'z (m)'); ylabel(ax,'E (arb. u.)'); title(ax,'Šíření přes rozhraní (kolmý dopad)');
-% 
-% % Infopanel (needitovatelný)
-% ta = uitextarea(uif,'Position',[710 320 320 420], 'Editable','off', ...
-%     'FontName','Consolas','FontSize',11);
-% 
-% % Ovládání: štítky + posuvníky/checkbox
-% % Frekvence
-% uilabel(uif,'Text','f [Hz]','Position',[710 290 60 22]);
-% slF = uislider(uif,'Position',[770 310 260 3],'Limits',[0.10 5.00],'Value',S.f);
-% lblF = uilabel(uif,'Text',sprintf('%.2f',S.f),'Position',[1035 290 50 22]);
-% 
-% % n1
-% uilabel(uif,'Text','n_1','Position',[710 250 60 22]);
-% slN1 = uislider(uif,'Position',[770 260 260 3],'Limits',[1.00 2.50],'Value',S.n1);
-% lblN1 = uilabel(uif,'Text',sprintf('%.3f',S.n1),'Position',[1035 250 50 22]);
-% 
-% % n2
-% uilabel(uif,'Text','n_2','Position',[710 210 60 22]);
-% slN2 = uislider(uif,'Position',[770 220 260 3],'Limits',[1.00 2.50],'Value',S.n2);
-% lblN2 = uilabel(uif,'Text',sprintf('%.3f',S.n2),'Position',[1035 210 50 22]);
-% 
-% % Amplituda
-% uilabel(uif,'Text','A_0','Position',[710 170 60 22]);
-% slA = uislider(uif,'Position',[770 180 260 3],'Limits',[0.10 2.00],'Value',S.A0);
-% lblA = uilabel(uif,'Text',sprintf('%.2f',S.A0),'Position',[1035 170 50 22]);
-% 
-% % Label + slider + numeric input pro alpha2
-% uilabel(uif,'Text','\alpha_2 [Np/m]','Position',[710 160 80 22]);
-% slAlpha2 = uislider(uif,'Position',[710 150 320 3], 'Limits',[0 2], 'Value',S.alpha2);
-% S.slAlpha2.ValueChangingFcn = @(src,evt) onChange('ALPHA2', evt.Value);
-% 
-% efAlpha2 = uieditfield(uif,'numeric', 'Position',[1035 160 70 22], 'Limits',[0 Inf], 'Value',S.alpha2);
-% S.efAlpha2.ValueChangedFcn = @(src,evt) onChange('ALPHA2', evt.Value);
-% 
-% % Checkbox odrazu
-% cbF = uicheckbox(uif,'Text','Zahrnout Fresnellovy rovnice','Position',[710 100 200 24],'Value',S.showFresnell);
-% cbR = uicheckbox(uif,'Text','Zobrazit odraženou vlnu','Position',[710 70 200 24],'Value',S.showReflection);
-% cbAttn2 = uicheckbox(uif,'Text','Zohlednit útlum v n_2', 'Position',[710 40 220 24], 'Value',S.useAttn2);
-% 
-% Ulož GUI handlery a grafické objekty do S
-% S.uif = uif; S.ax = ax; S.ta = ta;
-% S.slF = slF; S.slN1 = slN1; S.slN2 = slN2; S.slA = slA;
-% S.lblF = lblF; S.lblN1 = lblN1; S.lblN2 = lblN2; S.lblA = lblA; S.cbF = cbF; S.cbR = cbR;S.cbAttn2 = cbAttn2;S.slAlpha2 = slAlpha2;S.efAlpha2 = efAlpha2;
-
-
-
 %% --- UI rozložení (responsivní přes uigridlayout) ---
 
 uif = uifigure('Name','EM wave: n1 -> n2 (normal incidence)', ...
